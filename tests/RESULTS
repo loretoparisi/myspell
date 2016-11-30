@@ -1,0 +1,178 @@
+
+RESULTS
+
+1. compoundflag test
+********************
+
+aff file:
+-------------
+COMPOUNDFLAG X
+--------------
+
+dic file:
+--------------
+3
+foo/X
+bar/X
+baz
+--------------
+
+Foo and bar have only the X compoundflag, but baz has'nt it:
+----------------------------------------
+"foo" is okay
+
+"bar" is okay
+
+"baz" is okay
+
+"foofoo" is okay
+
+"foobar" is okay
+
+"foobaz" is incorrect!
+   suggestions:
+    ..."foo baz"
+
+"foobarfoo" is okay
+
+"foobarbaz" is incorrect!
+   suggestions:
+---------------------------------
+
+2. default compoundmin test
+***************************
+
+aff file:
+--------------
+COMPOUNDFLAG X
+--------------
+
+dic file:
+-------------
+2
+fo/X
+bar/X
+--------------
+
+COMPOUNDMIN default value is 3:
+----------------------------
+"barbar" is okay
+
+"fofo" is incorrect!
+   suggestions:
+    ..."fo fo"
+
+"fobar" is incorrect!
+   suggestions:
+    ..."fo bar"
+
+"barfo" is incorrect!
+   suggestions:
+    ..."bar fo"
+---------------------------------
+
+3. compoundmin set test
+***********************
+
+aff file:
+--------------
+COMPOUNDFLAG X
+COMPOUNDMIN 2
+--------------
+
+dic file:
+-------------
+2
+fo/X
+bar/X
+--------------
+
+COMPOUNDMIN set to 2:
+----------------------------
+"barbar" is okay
+
+"fofo" is okay
+
+"fobar" is okay
+
+"barfo" is okay
+--------------------
+
+4. compoundmin error test
+*************************
+
+When COMPOUNDMIN value is not a number, the atoi() function
+return with zero. This zero, and lower numbers, and greater 
+number than MAXWORDLEN substitued the default 3.
+
+aff file:
+--------------
+COMPOUNDFLAG X
+COMPOUNDMIN knmgdsklndslkng
+--------------
+
+dic file:
+-------------
+2
+fo/X
+bar/X
+--------------
+
+COMPOUNDMIN default value is 3:
+----------------------------
+
+"barbar" is okay
+
+"fofo" is incorrect!
+   suggestions:
+    ..."fo fo"
+
+"fobar" is incorrect!
+   suggestions:
+    ..."fo bar"
+
+"barfo" is incorrect!
+   suggestions:
+    ..."bar fo"
+
+
+5. affixes test
+***************
+
+aff file:
+------------------------
+COMPOUNDFLAG X
+
+PFX P Y 1
+PFX P   0     pre         .
+
+SFX S Y 1
+SFX S   0     suf         .
+--------------------------
+
+dic file:
+------------------
+foo/X/P/S
+------------------
+
+Suffixes are only allowed in the last word in a compound word.
+Prefixes are allowed in any words:
+-------------------------------------
+"foo" is okay
+
+"prefoo" is okay
+
+"foosuf" is okay
+
+"prefoosuf" is okay
+
+"prefoofoosuf" is okay
+
+"fooprefoosuf" is okay
+
+"foosuffoo" is incorrect!
+   suggestions:
+    ..."foosuf foo"
+
+"prefooprefoosuf" is okay
+---------------------------------------------

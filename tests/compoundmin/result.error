@@ -1,0 +1,36 @@
+
+When COMPOUNDMIN value is not a number, the atoi() function
+return with zero. This zero, and lower numbers, and greater 
+number than MAXWORDLEN substitued the default 3.
+
+
+aff file:
+--------------
+COMPOUNDFLAG X
+COMPOUNDMIN knmgdsklndslkng
+--------------
+
+dic file:
+-------------
+2
+fo/X
+bar/X
+--------------
+
+COMPOUNDMIN default value is 3:
+----------------------------
+
+"barbar" is okay
+
+"fofo" is incorrect!
+   suggestions:
+    ..."fo fo"
+
+"fobar" is incorrect!
+   suggestions:
+    ..."fo bar"
+
+"barfo" is incorrect!
+   suggestions:
+    ..."bar fo"
+

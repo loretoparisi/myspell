@@ -1,0 +1,37 @@
+aff file:
+------------------------
+COMPOUNDFLAG X
+
+PFX P Y 1
+PFX P   0     pre         .
+
+SFX S Y 1
+SFX S   0     suf         .
+--------------------------
+
+dic file:
+------------------
+foo/X/P/S
+------------------
+
+Suffixes are only allowed in the last word in a compound word.
+Prefixes are allowed in any words:
+-------------------------------------
+"foo" is okay
+
+"prefoo" is okay
+
+"foosuf" is okay
+
+"prefoosuf" is okay
+
+"prefoofoosuf" is okay
+
+"fooprefoosuf" is okay
+
+"foosuffoo" is incorrect!
+   suggestions:
+    ..."foosuf foo"
+
+"prefooprefoosuf" is okay
+---------------------------------------------

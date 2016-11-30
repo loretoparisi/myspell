@@ -1,0 +1,23 @@
+aff file:
+--------------
+COMPOUNDFLAG X
+COMPOUNDMIN 2
+--------------
+
+dic file:
+-------------
+2
+fo/X
+bar/X
+--------------
+
+COMPOUNDMIN set to 2:
+----------------------------
+"barbar" is okay
+
+"fofo" is okay
+
+"fobar" is okay
+
+"barfo" is okay
+--------------------

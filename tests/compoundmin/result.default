@@ -1,0 +1,29 @@
+
+aff file:
+--------------
+COMPOUNDFLAG X
+--------------
+
+dic file:
+-------------
+2
+fo/X
+bar/X
+--------------
+
+COMPOUNDMIN default value is 3:
+----------------------------
+"barbar" is okay
+
+"fofo" is incorrect!
+   suggestions:
+    ..."fo fo"
+
+"fobar" is incorrect!
+   suggestions:
+    ..."fo bar"
+
+"barfo" is incorrect!
+   suggestions:
+    ..."bar fo"
+---------------------------------

@@ -1,0 +1,223 @@
+From nemethl@gyorsposta.hu Mon Mar 11 09:43:14 2002
+Return-Path: <nemethl@gyorsposta.hu>
+Received: from jam.adverticum.net ([212.75.130.203])
+          by tomts17-srv.bellnexxia.net
+          (InterMail vM.4.01.03.23 201-229-121-123-20010418) with ESMTP
+          id <20020311144320.GILV4161.tomts17-srv.bellnexxia.net@jam.adverticum.net>
+          for <kevin.hendricks@sympatico.ca>;
+          Mon, 11 Mar 2002 09:43:20 -0500
+Received: from jam.adverticum.net (localhost) [212.75.130.203] 
+	by jam.adverticum.net with esmtp (Exim 3.22 #1 (Debian))
+	id 16kR1A-0004a7-00; Mon, 11 Mar 2002 15:43:16 +0100
+Received: from armada.prim.hu (212.75.130.205) by jam
+Received: from www-data by armada.prim.hu with local (Exim 3.34 #1 (Debian))
+	id 16kR18-0008Ps-00; Mon, 11 Mar 2002 15:43:14 +0100
+From: =?iso-8859-2?Q?N=E9meth_L=E1szl=F3?= <nemethl@gyorsposta.hu>
+To: "Kevin B. Hendricks" <kevin.hendricks@sympatico.ca>
+Errors-To: nemethl@gyorsposta.hu
+Reply-To: =?iso-8859-2?Q?N=E9meth_L=E1szl=F3?= <nemethl@gyorsposta.hu>
+X-Sender: nemethl@gyorsposta.hu
+References: <20020308022346.EBYF1234.tomts24-srv.bellnexxia.net@there> <20020308124223.PORT21664.tomts23-srv.bellnexxia.net@there> <E16jLRZ-0007xi-00@armada.prim.hu> <20020308160049.LDSX1656.tomts13-srv.bellnexxia.net@there>
+In-Reply-To: <20020308160049.LDSX1656.tomts13-srv.bellnexxia.net@there>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset=iso-8859-2
+Content-Transfer-Encoding: 8bit
+X-Mailer: PrimPosta
+Sender: nemethl@gyorsposta.hu
+Subject: Re: compound patch 2.0, affix file reading bug
+Message-Id: <E16kR18-0008Ps-00@armada.prim.hu>
+Date: Mon, 11 Mar 2002 15:43:14 +0100
+Status: R 
+X-Status: N
+
+Hi,
+
+I looked also two german dictionaries. Indeed, none of them use
+compounding possibilities of ispell.
+I ``googlized'' a little about german compounds:
+
+``It is possible to construct participial adjectives of almost any
+length, but they are little used in contemporary German, and
+regarded now as poor style. As in English, very long words are not
+always to be taken too seriously. On the author's last visit to
+Germany, the longest word he had to struggle with was
+Nasenspitzenwurzelentzündung It means `inflammation of the root of
+the tip of the nose', and comes from a cautionary tale for children.''
+(http://snowball.sourceforge.net/texts/germanic.html,
+snowball is a well-documented root word generator.)
+
+I found an interesting article about german compound words
+(http://citeseer.nj.nec.com/fetter98detection.html)
+``There are basically two types of compounds: semantic and orthographic.
+In semantic compounds, wich tend to
+be written together in many languages, the semantic content of the
+compound cannot be derived from the semantic
+content of its constituent parts, e.g. jellyfish, and bathroom. In
+orthographic  compounds, on other hand, the
+constituent parts retain their original semantic content, e.g. `coffee
+break,' which in German is written `Kaffeepause'
+because German orthography requires both types of compounds to be
+written together.''
+
+In Hungarian (along of German influence) compounds are very frequent,
+because Hungarian orthorgraphy also orders
+the orthographic compounding. I can't collect these thousands of words,
+because the list will never be complete.
+Fortunately, the hungarian compounding is simpler, than the german's.
+Namely, there is no inner affix formation, and
+the compounding is possible primarily with nouns (The Hungarian
+Ispell/MySpell use the compoundflag for nouns only).
+
+***
+
+When the inner affix formation is allowed too, this caused an another
+Hungarian specific problem:
+The Hungarian language is a agglutinative language (like Finnish,
+Turkish, Japan, Basque, etc.),
+i.e. Hungarian has many suffixes, and possible inflecting a word with
+suffix longer.
+For example:
+megszentségteleníthetetlenségeitekért
+is a correct Hungarian word.
+
+szent  = saint
+szentség = sainthood
+szentségtelen = ``sainthoodless''
+megszentségtelenít = desecrate
+megszentségteleníthet = could desecrate
+megszentségteleníthetetlen = couldn't desecrate (adjective)
+megszentségteleníthetetlenség = inability of desecrating (noun)
+megszentségteleníthetetlensége = his inability of desecrating
+megszentségteleníthetetlenségei = his inabilities of desecrating
+(nominative)
+megszentségteleníthetetlenségeitek = they inabilities of desecrating
+megszentségteleníthetetlenségeitekért = for they inabilities of
+desecrating
+
+(Another, but meaningless record:
+elkáposztástalaníthatatlanságoskodásaitokért,
+affixes: el-káposztá-s-talan-ít-hat-atlan-ság-os-kod-ás-a-i-tok-ért)
+
+Combinating the suffixes caused many word form: Hungarian has min. 10^7,
+or more in spoken language.
+Hence there is large probability, that a misspelled word is right,
+especially when the inner affix formation is
+allowed in compounds.
+
+For example, my first test was ``successful'':
+I wrote ``szerelesen'' instead of ``szerelmesen''
+szerelmesen = amorously
+szerelesen is meaningless, but Ispell allows with -C flag, or MySpell
+with inner affix formation, than
+szere+lesen
+szere = his material/agent
+lesen = in lurking-place
+
+I looked Finnish dictionary, it allows every compounds with inner
+affixes (compound on).
+I think, MySpell needs mimic Ispell controlled compounds option (that I
+tried),
+AND -C (or compound on) Ispell option.
+
+IMHO the word position doesn't matter in compounds, or rather too
+difficult to classify the words
+among this aspect.
+I think, 3 possible compound formations are enough:
+
+PO=prefix only, R=root only, SO = suffix only, PS= prefix and suffix, *
+= iteration
+
+1 PO R* SO (this equivalent of Ispell controlled compound formation)
+2 PO PO* PS  (for Hungarian)
+3 PS PS* PS  (this equivalent of Ispell compound on formation, or
+Ispell's -C flag)
+
+Sorry, I can't write more now.
+Thanks for your ideas.
+
+Best regards
+
+Laci
+
+
+
+
+"Kevin B. Hendricks" <kevin.hendricks@sympatico.ca> irta:
+
+> Hi,
+>
+> > > So why don't we just allow all prefixes and suffixes on every word
+> in
+> > > the
+> > > combination word (which is what I am doing now).  Why restrict the
+> > > last
+> > > word to have suffixes only?
+> >
+> > Because we will accept _many_ bad words, those seems (bad) compound
+> > word!
+> > Ispell also allows suffixes only on the last subword in a compound
+> word.
+> > In Ispell there are a special in-compound affix flag marker (~) for
+> > German language.
+> >
+> > I will look the German affix problem too...
+>
+> Okay I looked at 4 different ispell German dictionaries and none
+> turned on
+> compound word support in ispell.  They just added the most common of
+> them
+> to the wordlist as unique words (which they are) and created a few
+> prefixes and a few suffixes to handle some common pairings.
+>
+> This is most technically correct since there are capitalization issues
+> when combining words in German.
+>
+> So any time we allow compound words we are making the distinct choice
+> that
+> allowing some bad words through is better since the size of the
+> dictionary
+> otherwise would be simply too big.
+>
+> Is this really true in Hungarian?  It does not seem to be that true in
+> German at all once you handle the most common pairings with prefixes
+> and
+> suffixes.
+>
+> Perhaps a better solution would be to introduce 3 flags for compound
+> words:
+>
+> COMPOUND_BEGIN   ~
+> COMPOUND_MIDDLE +
+> COMPOUND_END  #
+>
+> And then limit it to root words and prefixes at the beginning, and
+> only
+> the last word with just suffixes (no prefixes).  In addition with an
+> integer "level" parameter to the compound_check we would know if we
+> were
+> checking a beginning, middle, or end word and make sure the correct
+> flag
+> exists for the word to be a the beginning, or somewhere in the middle,
+> or
+> at the end of the compound word.
+>
+> Otherwise we will simply be allowing too many bad words through which
+> just
+> doens't make sense to me.
+>
+> I just don't know enough about German or Hungarian to know if this
+> makes
+> sense.
+>
+> What do you think?
+>
+> Kevin
+>
+>
+>
+>
+
+
+
+

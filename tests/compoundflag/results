@@ -1,0 +1,34 @@
+aff file:
+-------------
+COMPOUNDFLAG X
+--------------
+
+dic file:
+--------------
+3
+foo/X
+bar/X
+baz
+--------------
+
+Foo and bar have only the X compoundflag, but baz has'nt it:
+----------------------------------------
+"foo" is okay
+
+"bar" is okay
+
+"baz" is okay
+
+"foofoo" is okay
+
+"foobar" is okay
+
+"foobaz" is incorrect!
+   suggestions:
+    ..."foo baz"
+
+"foobarfoo" is okay
+
+"foobarbaz" is incorrect!
+   suggestions:
+---------------------------------

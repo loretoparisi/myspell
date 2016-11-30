@@ -1,0 +1,147 @@
+From stekman@sedata.org Sun Mar 10 10:18:31 2002
+Return-Path: <stekman@sedata.org>
+Received: from No6.NetMegs.com ([209.10.77.2]) by tomts9-srv.bellnexxia.net
+          (InterMail vM.4.01.03.23 201-229-121-123-20010418) with ESMTP
+          id <20020310151808.HVFA10864.tomts9-srv.bellnexxia.net@No6.NetMegs.com>
+          for <kevin.hendricks@sympatico.ca>;
+          Sun, 10 Mar 2002 10:18:08 -0500
+Received: from [192.168.0.58] (h8n1fls33o1011.telia.com [217.209.8.8])
+	by No6.NetMegs.com (8.11.6/8.9.3) with ESMTP id g2AF6th15599
+	for <kevin.hendricks@sympatico.ca>; Sun, 10 Mar 2002 10:06:55 -0500
+Subject: Re: Compound words in myspell
+From: Stefan Ekman <stekman@sedata.org>
+To: "Kevin B. Hendricks" <kevin.hendricks@sympatico.ca>
+In-Reply-To: <7657CA00-3431-11D6-995A-0003938E434C@sympatico.ca>
+References: <7657CA00-3431-11D6-995A-0003938E434C@sympatico.ca>
+Content-Type: text/plain;
+  charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Ximian Evolution 1.0.2.99 Preview Release
+Date: 10 Mar 2002 15:18:31 +0000
+Message-Id: <1015773512.2091.65.camel@localhost.localdomain>
+Mime-Version: 1.0
+Status: R 
+X-Status: N
+
+s=F6n 2002-03-10 klockan 14.16 skrev Kevin B. Hendricks:
+
+> One of the problems I have in supporting compound words is finding=20
+> enough information about the rules that are used to create them.=20
+
+The problem is that our languages treat compound words completely
+different.=20
+
+The influence of the english speaking world is a big problem for us. So
+this matter must be treated with some caution! We have lots of people
+debateing the problem with this influence, particularly about the
+problem that people divides compund words into their root-words.
+
+The general rule in swedish is that you can make a compound word of any
+words in the same way that you can put together two or more words with a
+hyphen in your language. So gramatically almost anything is OK, but many
+combinations will ofcourse be senseless. We almost never use hyphens
+when we put words together.
+
+My opinion is, and it is an opinion not a fact, that in SWEDISH any
+number of words can be put together, as long as one or more of them a
+noun, an adjective or a verb. And useing other words would make the list
+even longer.
+
+I am trying to get some persons to respond on the matter, so I perhaps
+will have to get back on the above.
+
+> Will=20
+> you please take a moment and try answering a few questions for me:
+>=20
+> 1. How is the sequence determined?  If the compound word  "foobar" made=20
+> of up "foo" and "bar" is correct.  Is "barfoo" correct?  If not do only=20
+> certain words come at the beginning of compound words, some in the=20
+> middle only and some at the end only.
+
+My opinion is, and it is an opinion not a fact, that in SWEDISH any
+number of words can be put together, as long as one or more of them a
+noun, an adjective or a verb. Order can matter, but not gramatically.
+
+>=20
+> I guess what I am asking is would you be able to somehow mark all of the=20
+> root words that can only be found at the beginning of compound words,=20
+> then mark all of the root words that can only com in the middle, and ...=20
+> so that the spellchecker could at least partially check the sequence of=20
+> the subwords in the compound word to be checked.
+
+That would not be possible:
+
+again
+
+gr=F6nsallad
+salladgr=F6n
+salladsgr=F6n
+
+are valid in swedish, but the second one doesn't make any sense, and the
+author would most certainly mean the third...
+
+>=20
+> 2. Can only root words be used in compound words, and if not, where are=20
+> prefixes and suffxies allowed.
+
+It is even worse in swedish... some words have special forms (suffixes)
+when they are combinded, look att the rules I presented in the last
+letter. They are just used when the word is used as "a prefix".
+
+>=20
+> For example if the compound word is "word1word2word3...wordn-1,wordn"
+>=20
+> Do you:
+>=20
+> a) allow only prefixes on word1 through wordn-1 and allow only suffixes=20
+> on wordn
+>=20
+> or
+>=20
+> b) allow only prefixes on word1 and only suffixes on wordn and force all=20
+> of the other words (2 through n-1) to be root words (no prefixes or=20
+> suffixes allowed)
+>=20
+> or
+>=20
+> c) allow both prefixes and suffixes throughout any word of the compound=20
+> word
+>=20
+> or
+>=20
+> d) is there some other rule that makes sense about use of prefixes and=20
+> suffixes on the subwords that make up a compound word
+
+I think c in swedish. But we also have suffixes just for the compound
+words (mentioned above). But the swedish aff-file contains no prefixes.
+Prefixes are not widely used in swedish.
+>=20
+> The problem is without lots of knowledge about 1 and 2, the spellchecker=20
+> will actually start saying some "bad" compound words are actually=20
+> spelled correctly.  This (IMHO) is never a good things to do.  Accuracy=20
+> must come first and size of the dictionary comes second.
+
+But the spellchecker will fool swedes to part words into root-words. And
+that is an even bigger problem in our part of the world (again an
+opinion, not fact).
+=20
+> 3. How many compound words are actually in Swedish today as a percent of=20
+> the total?  Is it 30%, 50% what?  Why not simply:
+
+As the rules to make compound words are so liberal, I did the following
+experiment:
+
+I used my paper dictionary and closed my eyes. I pointed randomly in it.
+For every word i pointed at, I tried to make as many good compound words
+as I could. It was never less than ten when I pointed at nouns, verbs or
+adjectives, for other types of words it somtimes was a bit harder. So a
+complete swedish wordlist, with all "common" compound words would be at
+least 10 times as big as the one without.
+
+The technical solution you proposed is not possible, as the wordlist
+doesn't contain the majority of compound words: The language is allowing
+us to create them when we need them, again as you do with hyphens.
+
+/Stefan
+
+
